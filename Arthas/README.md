@@ -1,4 +1,4 @@
-# $\color{#FF0000}{Arthas}$（阿尔萨斯） 能为你做什么？
+# <font color="green">Arthas</span>（阿尔萨斯） 能为你做什么？
 
 
 ## 当你遇到以下类似问题而束手无策时，Arthas可以帮助你解决：
