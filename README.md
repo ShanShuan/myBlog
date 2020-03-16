@@ -30,4 +30,7 @@
 - [令牌桶](https://github.com/ShanShuan/myBlog/blob/master/current_limiting/src/main/java/com/shanshuan/TokenBucket.java)
 
 ### 队列
+- [简单队列](https://github.com/ShanShuan/myBlog/blob/master/leetcode/src/main/java/com/shanshuan/queue/MyQueue.java) 
+- [循环队列](https://github.com/ShanShuan/myBlog/blob/master/leetcode/src/main/java/com/shanshuan/queue/MyCircularQueue.java)
+    - [参考模型](https://leetcode-cn.com/explore/learn/card/queue-stack/216/queue-first-in-first-out-data-structure/864/)
 
