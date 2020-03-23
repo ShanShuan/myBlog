@@ -22,7 +22,9 @@ public class Solution {
 
         // Initialize a stack to be used in the algorithm.
         Stack<Character> stack = new Stack<Character>();
-
+            if((s.length()&1)==1){
+                return false;
+            }
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if(mappings.containsKey(c)){
