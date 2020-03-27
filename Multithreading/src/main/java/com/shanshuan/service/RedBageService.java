@@ -11,6 +11,7 @@ import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ import java.util.List;
 public class RedBageService {
     @Autowired
     RedBagMapper redBagMapper;
+    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     /**
@@ -61,9 +63,19 @@ public class RedBageService {
 
 
     public void countDownRedic(int finalI, int i) {
-//        DefaultRedisScript<List> getRedisScript = new DefaultRedisScript<List>();
-//        getRedisScript.setResultType(List.class);
-//        getRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("luascript/LimitLoadTimes.lua")));
-//        redisTemplate.execute()
+        DefaultRedisScript<List> getRedisScript = new DefaultRedisScript<List>();
+        getRedisScript.setResultType(List.class);
+        getRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("luascript/LimitLoadTimes.lua")));
+        List<String> keyList = new ArrayList();
+        keyList.add(i+"");
+        List<String> vauleList = new ArrayList();
+        List execute = redisTemplate.execute(getRedisScript, keyList, vauleList);
+        if(execute.size()>0){
+            if((Long)execute.get(0)==1){
+                System.out.println("抢红包成功");
+            }else{
+                System.out.println("抢红包失败");
+            }
+        }
     }
 }

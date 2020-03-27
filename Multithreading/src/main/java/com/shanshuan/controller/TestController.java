@@ -28,6 +28,15 @@ public class TestController {
     @Autowired
     private RedisUtil redisUtil;
 
+
+
+    @RequestMapping("/dasd")
+    public  String dasd()   {
+        redBageService.countDownRedic(1,1);
+        return "";
+    }
+
+
     @RequestMapping("/initRedEnvelopes")
     public  String init()   {
         RedBag red=new RedBag();
@@ -36,6 +45,7 @@ public class TestController {
         red.setCount(10);
         red.setVersion(0);
         redBagMapper.updateByPrimaryKey(red);
+        redisUtil.set("1",10);
         return "sucess";
     }
 
@@ -61,7 +71,7 @@ public class TestController {
                     e.printStackTrace();
                 }
 //                redBageService.countDown(finalI,1);//悲观锁
-                redBageService.countDownLg(finalI,1);//乐观锁
+//                redBageService.countDownLg(finalI,1);//乐观锁
                 redBageService.countDownRedic(finalI,1);
 
                 countDownLatch.countDown();
