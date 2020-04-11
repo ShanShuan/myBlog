@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/current_limiting/pom.xml" />
         <option value="$PROJECT_DIR$/leetcode/pom.xml" />
         <option value="$PROJECT_DIR$/Multithreading/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis/pom.xml" />
       </list>
     </option>
   </component>
