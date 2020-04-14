@@ -18,7 +18,6 @@ public class Test {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> list = mapper.getUserByName("tom");
-        //1
         //2
         //3
     }
