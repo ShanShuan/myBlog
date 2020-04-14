@@ -19,6 +19,7 @@ public class Test {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> list = mapper.getUserByName("tom");
         //我的提交
+        //我的提交2
 
     }
 }
