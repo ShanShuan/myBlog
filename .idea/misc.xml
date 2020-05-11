@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/Multithreading/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/elk/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_plus/pom.xml" />
       </list>
     </option>
   </component>

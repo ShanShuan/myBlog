@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: plus
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+      #    url: jdbc:mysql://10.1.1.101:3306/ys_fk_tmp?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+      #    username: zxdev
+      #    password: zxdev$yscredit$Aa123
+    url: jdbc:oracle:thin:@10.1.1.200:1521/helowin
+    username: yingxiao
+    password: yingxiao
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper/*
+server:
+  port: 9025

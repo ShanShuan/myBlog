@@ -12,6 +12,10 @@
 ### Arths
 - 1.[Arthas--阿尔萨斯--Java诊断工具](https://github.com/ShanShuan/myBlog/tree/master/Arthas)
     - 1.1[](https://github.com/ShanShuan/myBlog/tree/master/Arthas)
+### mybatis plus
+   - [mybatis plus-orm快速开发工具](https://mp.baomidou.com/guide/wrapper.html#%E4%BD%BF%E7%94%A8-wrapper-%E8%87%AA%E5%AE%9A%E4%B9%89sql)
+
+    
 
 
 
