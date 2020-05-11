@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanshuan.mapper.RedBagMapper">
+
+
+    <update id="updateReduce">
+        update red_envelopes set sum=sum-1 , count=count-1 where id=#{id}
+    </update>
+    <update id="updateReduceByVersion" >
+         update red_envelopes set sum=sum-1 , count=count-1,version=version+1 where id=#{id} and version=#{version}
+    </update>
+    <select id="selectForupdateByid" resultType="com.shanshuan.bo.RedBag">
+        select *  from red_envelopes where id=#{id} for update
+    </select>
+</mapper>
