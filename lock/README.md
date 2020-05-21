@@ -8,5 +8,5 @@
        * PROPAGATE ： -3， <u>表示下一次共享式同步状态将会无条件被传播下去(没太理解)</u>
        * 0 初始状态
     2. 结构图 
-      <br> ![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png)
+      <br> ![RUNOOB 图标](https://github.com/ShanShuan/myBlog/blob/master/lock/src/main/resources/node.jpg)
     
