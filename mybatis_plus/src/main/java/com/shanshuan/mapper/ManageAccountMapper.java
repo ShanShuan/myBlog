@@ -23,7 +23,7 @@ public interface ManageAccountMapper extends BaseMapper<ManageAccountDO> {
      * @param wrapper
      * @return
      */
-    @Select(" SELECT  ma.id,ma.user_name as userName,ma.nickname as nickName,ma.phone as telephone,ma.is_valid as isValid,ma.email,ma.parent_id as  parentId  FROM  manage_account ma ${ew.customSqlSegment}")
+    @Select(" SELECT  ma.id,ma.user_name  userName,ma.nickname  nickName,ma.phone  telephone,ma.is_valid  isValid,ma.email,ma.parent_id   parentId  FROM  manage_account ma ${ew.customSqlSegment}")
     Page<CompanyAccountVo> getUserListByCompanyAndPageAndSearch(Page<CompanyAccountVo> page,@Param(Constants.WRAPPER) QueryWrapper<Object> wrapper);
 
 
