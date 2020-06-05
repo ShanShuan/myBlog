@@ -2,7 +2,7 @@
 
 #工作模式
 ##简单模式
-![图示](https://github.com/ShanShuan/myBlog/blob/master/mq/src/main/resources/static/simple.jpg)<br>
+![图示](https://raw.githubusercontent.com/ShanShuan/myBlog/master/mq/src/main/resources/static/simple.jpg)<br>
 P：消息的生产者<br>
 C：消息的消费者<br>
 生产者发送消息到队列<br>
@@ -59,7 +59,7 @@ C：消息的消费者<br>
 ```
 connection.createChannel(true); true表示开启事务 ，需要确认(channel.txCommit())后消息才被删除；false 相反。<br>
 #WORK 模式
-![图示](https://github.com/ShanShuan/myBlog/blob/master/mq/src/main/resources/static/work.jpg)<br>
+![图示](https://raw.githubusercontent.com/ShanShuan/myBlog/master/mq/src/main/resources/static/work.jpg)<br>
 一个生产者、2个消费者。<br>
 一个消息只能被一个消费者获取。<br>
 <br>
