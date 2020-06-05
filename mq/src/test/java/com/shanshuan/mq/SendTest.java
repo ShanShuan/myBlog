@@ -7,8 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.concurrent.TimeoutException;
 
 /**
  * ┏┓　　　┏┓
@@ -37,9 +36,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class SendTest {
 @Autowired
-Send send;
+SimpleAndWorkModel send;
     @Test
-    void test() throws IOException {
+    void test() throws IOException, TimeoutException {
         send.test();
     }
 
@@ -48,9 +47,11 @@ Send send;
         send.test1();
     }
 
-
     @Test
-    void send() throws IOException, InterruptedException {
-        send.send();
+    void test2() throws IOException, InterruptedException {
+        send.test2();
     }
+
+
+
 }

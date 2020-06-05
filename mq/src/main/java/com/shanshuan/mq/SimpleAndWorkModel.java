@@ -1,9 +1,8 @@
 package com.shanshuan.mq;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.DeliverCallback;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
+import com.rabbitmq.client.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.Connection;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * ┏┓　　　┏┓
@@ -638,50 +638,50 @@ import java.io.IOException;
  *      /   |                     |     ----------""\
  * /"\--"--_|                     |               |  \
  * |_______/                      \______________/    )
- *                                               \___/
+ *
+ *
+ *
+ *
+ * 简单队列
  */
 @Component
-public class Send {
-    private final static String QUEUE_NAME = "hello";
+public class SimpleAndWorkModel {
+    private static final Logger logger = LoggerFactory.getLogger(SimpleAndWorkModel.class);
+    private final static String QUEUE_NAME = "transactional";
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    public  void send(){
-        rabbitTemplate.convertAndSend("hello","sasdasdasd");
-    }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public  void test() throws IOException {
+   // 简单队列
+    public  void test() throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = rabbitTemplate.getConnectionFactory();
         Connection connection = connectionFactory.createConnection();
-        Channel channel = connection.createChannel(true);
-
-        /**
-         * 队列名字
-         * 如果我们声明一个持久队列(该队列将在服务器重启后继续存在)，则为true。
-         *如果我们声明一个排他队列(仅限于此连接)，则为true。
-         * 如果我们声明一个自动删除队列(服务器将在不再使用时删除它)，则为true
-         * 队列的其他属性(构造参数)
-         */
-        channel.queueDeclare(QUEUE_NAME,true,false,false,null);
-        String message="Hello World!";
-        channel.basicPublish("",QUEUE_NAME,null,message.getBytes());
+        Channel channel = connection.createChannel(true);//开始事务确认机制
+        try {
+            for (int i = 0; i <100 ; i++) {
+                /**
+                 * 队列名字
+                 * 如果我们声明一个持久队列(该队列将在服务器重启后继续存在)，则为true。
+                 * 如果我们声明一个排他队列(仅限于此连接)，则为true。
+                 * 如果我们声明一个自动删除队列(服务器将在不再使用时删除它)，则为true
+                 * 队列的其他属性(构造参数)
+                 */
+                // 声明（创建）队列
+                channel.queueDeclare(QUEUE_NAME, true, false, false, null);
+                String message = (i+1)+"Hello World!";
+                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+                System.out.println(" [x] Sent '" + message + "'");
+                channel.txCommit();//提交事务
+            }
+        }catch (Exception e){
+            channel.txRollback();//回退事务
+            logger.error("发送小心出现错误",e);
+        }
+        //关闭通道和连接
+        channel.close();
+        connection.close();
     }
 
 
@@ -690,15 +690,66 @@ public class Send {
         ConnectionFactory connectionFactory = rabbitTemplate.getConnectionFactory();
         Connection connection = connectionFactory.createConnection();
         Channel channel = connection.createChannel(true);
+        // 同一时刻服务器只会发一条消息给消费者
+        channel.basicQos(1);
+        boolean autoAck = false;
+        final int[] count = {0};
+        channel.basicConsume(QUEUE_NAME, autoAck, "myConsumerTag", new DefaultConsumer(channel) {
+                    @Override
+                    public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                        String routingKey = envelope.getRoutingKey();
+                        String contentType = properties.getContentType();
+                        Thread thread = Thread.currentThread();
+                        try {
+                            thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-
-
-        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            String message = new String(delivery.getBody(), "UTF-8");
-            System.out.println(" [x] Received '" + message + "'");
-        };
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+                        System.out.println("body:"+new String(body));
+                        long deliveryTag = envelope.getDeliveryTag();
+                        // (process the message components here ...)
+                        channel.basicAck(deliveryTag, false);
+                        count[0]++;
+                        System.out.println(count[0]);
+                        channel.txCommit();
+                    }
+        });
         Thread.currentThread().join();
+
     }
 
+
+    public  void test2() throws IOException, InterruptedException {
+        ConnectionFactory connectionFactory = rabbitTemplate.getConnectionFactory();
+        Connection connection = connectionFactory.createConnection();
+        Channel channel = connection.createChannel(true);
+        // 同一时刻服务器只会发一条消息给消费者
+        channel.basicQos(1);
+        boolean autoAck = false;
+        final int[] count = {0};
+        channel.basicConsume(QUEUE_NAME, autoAck, "myConsumerTag", new DefaultConsumer(channel) {
+            @Override
+            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                String routingKey = envelope.getRoutingKey();
+                String contentType = properties.getContentType();
+                Thread thread = Thread.currentThread();
+                try {
+                    thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+//                System.out.println("contentType:"+contentType);
+                System.out.println("body:"+new String(body));
+                long deliveryTag = envelope.getDeliveryTag();
+                // (process the message components here ...)
+                channel.basicAck(deliveryTag, false);
+                count[0]++;
+                System.out.println(count[0]);
+                channel.txCommit();
+            }
+        });
+        Thread.currentThread().join();
+
+    }
 }

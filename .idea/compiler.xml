@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="recursion" />
+        <module name="mybatis" />
+        <module name="elk" />
+        <module name="mq" />
+        <module name="mybatis_plus" />
+        <module name="current_limiting" />
+        <module name="Multithreading" />
+        <module name="leetcode" />
+        <module name="lock" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="comshanshuan" target="1.5" />
+      <module name="current_limiting" target="8" />
+      <module name="elk" target="1.5" />
+      <module name="leetcode" target="8" />
+      <module name="lock" target="1.5" />
+      <module name="mq" target="1.8" />
+      <module name="Multithreading" target="8" />
+      <module name="mybatis" target="1.5" />
+      <module name="mybatis_plus" target="8" />
+      <module name="recursion" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mq" options="-parameters" />
+      <module name="mybatis_plus" options="-parameters" />
+    </option>
+  </component>
+</project>

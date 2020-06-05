@@ -2,7 +2,8 @@ server:
   port: 9026
 spring:
   rabbitmq:
-    username: guest
+    username: wangzifeng
     port: 5672
     host: 127.0.0.1
-    password: guest
+    password: wangzifeng
+    virtual-host: test #vhost
