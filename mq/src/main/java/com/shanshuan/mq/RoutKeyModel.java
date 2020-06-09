@@ -31,7 +31,7 @@ public class RoutKeyModel {
         // 消息内容
         for (int i = 0; i <10 ; i++) {
             String message = i+1+"Hello World!";
-            channel.basicPublish(EXCHANGE_NAME, "insert", null, message.getBytes());
+            channel.basicPublish(EXCHANGE_NAME, "update", null, message.getBytes());
             System.out.println(" [x] Sent '" + message + "'");
         }
         channel.close();

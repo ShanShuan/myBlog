@@ -146,4 +146,4 @@ basicQos 方法设置了当前信道最大预获取（prefetch）消息数量为
 
 
 # 路由模式 
-![图示](https://raw.githubusercontent.com/ShanShuan/myBlog/master/mq/src/main/resources/static/routKey.jpg)<br>
+![图示](https://raw.githubusercontent.com/ShanShuan/myBlog/master/mq/src/main/resources/static/routeKey.jpg)<br>
