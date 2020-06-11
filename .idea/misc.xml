@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/mybatis_plus/pom.xml" />
         <option value="$PROJECT_DIR$/mq/pom.xml" />
         <option value="$PROJECT_DIR$/lock/pom.xml" />
+        <option value="$PROJECT_DIR$/mysql/pom.xml" />
       </list>
     </option>
   </component>

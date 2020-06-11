@@ -9,6 +9,7 @@
         <module name="recursion" />
         <module name="mybatis" />
         <module name="elk" />
+        <module name="mysql" />
         <module name="mq" />
         <module name="mybatis_plus" />
         <module name="current_limiting" />
@@ -27,6 +28,7 @@
       <module name="Multithreading" target="8" />
       <module name="mybatis" target="1.5" />
       <module name="mybatis_plus" target="8" />
+      <module name="mysql" target="1.5" />
       <module name="recursion" target="8" />
     </bytecodeTargetLevel>
   </component>
