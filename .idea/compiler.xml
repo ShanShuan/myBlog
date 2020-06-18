@@ -16,6 +16,7 @@
         <module name="Multithreading" />
         <module name="leetcode" />
         <module name="lock" />
+        <module name="linux" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="current_limiting" target="8" />
       <module name="elk" target="1.5" />
       <module name="leetcode" target="8" />
+      <module name="linux" target="1.5" />
       <module name="lock" target="1.5" />
       <module name="mq" target="1.8" />
       <module name="Multithreading" target="8" />

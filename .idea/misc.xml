@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/mq/pom.xml" />
         <option value="$PROJECT_DIR$/lock/pom.xml" />
         <option value="$PROJECT_DIR$/mysql/pom.xml" />
+        <option value="$PROJECT_DIR$/linux/pom.xml" />
       </list>
     </option>
   </component>
