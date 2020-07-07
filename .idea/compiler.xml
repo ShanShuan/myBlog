@@ -9,6 +9,7 @@
         <module name="recursion" />
         <module name="mybatis" />
         <module name="elk" />
+        <module name="docker" />
         <module name="mysql" />
         <module name="mq" />
         <module name="mybatis_plus" />
@@ -22,6 +23,7 @@
     <bytecodeTargetLevel>
       <module name="comshanshuan" target="1.5" />
       <module name="current_limiting" target="8" />
+      <module name="docker" target="1.5" />
       <module name="elk" target="1.5" />
       <module name="leetcode" target="8" />
       <module name="linux" target="1.5" />
