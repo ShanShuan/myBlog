@@ -8,7 +8,7 @@
     <artifactId>Multithreading</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <mysql-driver.version>8.0.17</mysql-driver.version>
+        <mysql-driver.version>8.0.28</mysql-driver.version>
     </properties>
 
     <dependencies>
